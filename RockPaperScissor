@@ -1,0 +1,53 @@
+Piedra = {
+    "nombre" : "Piedra",
+    "pierde" : ["tijera", "lagarto"],
+    "gana" : ["papel", "spock"]
+}
+
+Tijera = {
+    "nombre" : "Tijera",
+    "pierde" : ["papel", "lagarto"],
+    "gana" : ["piedra", "spock"]
+}
+
+Papel = {
+    "nombre" : "Papel",
+    "pierde" : ["piedra", "spock"],
+    "gana" : ["tijera", "lagarto"]
+}
+
+Lagarto = {
+    "nombre" : "Lagarto",
+    "pierde" : ["piedra", "tijera"],
+    "gana" : ["papel", "spock"]
+}
+
+Spock = {
+    "nombre" : "Spock",
+    "pierde" : ["papel", "lagarto"],
+    "gana" : ["piedra", "tijera"]
+}
+
+lista_opciones = [Piedra, Papel, Tijera, Lagarto, Spock]
+def jugar_juego():
+    global puntos1, puntos2
+    opcion1 = int(input("Jugador 1, elige tu opción (0: Piedra, 1: Papel, 2: Tijera, 3: Lagarto, 4: Spock): "))
+    opcion2 = int(input("Jugador 2, elige tu opción (0: Piedra, 1: Papel, 2: Tijera, 3: Lagarto, 4: Spock): "))
+    eleccion1 = lista_opciones[opcion1]
+    eleccion2 = lista_opciones[opcion2]
+    if eleccion2["nombre"].lower() in [g.lower() for g in eleccion1["gana"]]:
+        print("Jugador 1 gana!")
+        puntos1 += 1
+    elif eleccion2["nombre"].lower() in [p.lower() for p in eleccion1["pierde"]]:
+        print("Jugador 2 gana!")
+        puntos2 += 1
+    else:
+        print("Empate!")
+
+
+puntos1 = 0
+puntos2 = 0
+
+while puntos1 < 3 and puntos2 < 3:
+    jugar_juego()
+print(f"Puntuación final - Jugador 1: {puntos1}, Jugador 2: {puntos2}")
